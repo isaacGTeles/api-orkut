@@ -67,7 +67,7 @@ app.get("/", (req, res) => {
 
 app.get("/usuarios", async (req, res) => {
     try {
-        const resultado = await pool.query("SELECT * FROM usuarios");
+        const resultado = await pool.query("SELECT nome, email FROM usuarios");
         res.json(resultado.rows);
     } catch (error) {
         res.status(500).json({ error: "Erro ao buscar usuários" });
@@ -82,7 +82,8 @@ app.get("/posts", async (req, res) => {
         //     usuarios.nome,
         //     post.titulo,
         //     post.conteudo,
-        //     post.criado_em
+        //     post.criado_em,
+        //     post.id AS post_id
         //     FROM post
         //     JOIN usuarios
         //     ON post.usuario_id = usuarios.id
